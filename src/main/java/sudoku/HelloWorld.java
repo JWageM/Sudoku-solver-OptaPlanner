@@ -37,7 +37,7 @@ public class HelloWorld {
                 "sudoku/solver_conf.xml");
         Solver<Sudoku> solver = solverFactory.buildSolver();
 
-        int[][] matrix = ImportCsv.matrixFromCsv("sudoku.csv");
+        int[][] matrix = ImportCsv.matrixFromCsv("sudoku_4_star.csv");
         Sudoku sudoku = new Sudoku(matrix);
         /*
        Sudoku sudoku = new Sudoku();

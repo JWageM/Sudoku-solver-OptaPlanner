@@ -18,8 +18,9 @@
   </scoreDirectorFactory>
 
   <termination>
-   <!-- <bestScoreLimit>0</bestScoreLimit>-->
-       <secondsSpentLimit>60</secondsSpentLimit>
+   	<!--<bestScoreLimit>0</bestScoreLimit>-->
+       <secondsSpentLimit>10</secondsSpentLimit>
+       <bestScoreLimit>0hard/0soft</bestScoreLimit>
   </termination>
   
   
