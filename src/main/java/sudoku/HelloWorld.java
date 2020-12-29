@@ -37,6 +37,9 @@ public class HelloWorld {
                 "sudoku/solver_conf.xml");
         Solver<Sudoku> solver = solverFactory.buildSolver();
 
+        int[][] matrix = ImportCsv.matrixFromCsv("sudoku.csv");
+        Sudoku sudoku = new Sudoku(matrix);
+        /*
        Sudoku sudoku = new Sudoku();
        List<Vakje> vakjesList= new ArrayList<>();
        int n = 9;
@@ -47,6 +50,7 @@ public class HelloWorld {
     	   }
     	   
        }
+       */
        
        //Vakje vak1 = new Vakje();
        //vak1.cijfer = new Integer(1);
@@ -54,19 +58,31 @@ public class HelloWorld {
        //vak2.cijfer = new Integer(2);   
        //vakjesList.add(vak1);
        //vakjesList.add(vak2);
-       sudoku.vakjesList=vakjesList;
+       
+        //sudoku.vakjesList=vakjesList;
        	   
      
 
         // Solve the problem
        Sudoku solvedSudoku = solver.solve(sudoku);
+       
+       int n=9;
        for(int i = 0; i < n; i++) {
     	   for(int j = 0; j < n; j++) {
-    	       System.out.println(solvedSudoku.vakjesList.get(j+n*i).cijfer);
+    	       System.out.print(solvedSudoku.vakjesList.get(j+n*i).cijfer);
+    	       System.out.print(",");
     	   }
+    	   System.out.println("");
     	   
        }
        
+       
+       // Laat de score van de oplossing zien:
+       HardSoftScoreCalculator calculator = new HardSoftScoreCalculator();
+       calculator.calculateScore(solvedSudoku);
+       
+       
+       /*
        for (int j = 0; j<n; j++) {
        final int k = j;
        System.out.println( IntStream
@@ -76,6 +92,9 @@ public class HelloWorld {
                .collect(Collectors.toList()));
       
        }
+       */
+       
+       
        //System.out.println(solvedSudoku.vakjesList.get(0).cijfer);
        //System.out.println(solvedSudoku.vakjesList.get(1).cijfer);
        

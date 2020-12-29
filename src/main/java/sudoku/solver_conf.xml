@@ -19,7 +19,7 @@
 
   <termination>
    <!-- <bestScoreLimit>0</bestScoreLimit>-->
-       <secondsSpentLimit>5</secondsSpentLimit>
+       <secondsSpentLimit>300</secondsSpentLimit>
   </termination>
   
   

@@ -20,10 +20,10 @@ public class HardSoftScoreCalculator implements EasyScoreCalculator<Sudoku>{
         // Constraint: geen gelijke getallen in een kolom.
         //IntStream stream = IntStream.of(solution.vakjesList.forEach((vakje) -> vakje.cijfer));
         //solution.vakjesList.stream().map((Vakje vakje) -> {return vakje.cijfer;});
-        System.out.println((int)Math.pow(n, 2));     
-        System.out.println(solution.vakjesList.stream().mapToInt((Vakje vakje) -> {return vakje.cijfer;}).distinct().count());
+        //System.out.println((int)Math.pow(n, 2));     
+        //System.out.println(solution.vakjesList.stream().mapToInt((Vakje vakje) -> {return vakje.cijfer;}).distinct().count());
 
-        System.out.println((-(int)Math.pow(n, 2))+solution.vakjesList.stream().mapToInt((Vakje vakje) -> {return vakje.cijfer;}).distinct().count());
+        //System.out.println((-(int)Math.pow(n, 2))+solution.vakjesList.stream().mapToInt((Vakje vakje) -> {return vakje.cijfer;}).distinct().count());
         //hardScore += (-(int)Math.pow(n, 2))+solution.vakjesList.stream().mapToInt((Vakje vakje) -> {return vakje.cijfer;}).distinct().count();        
         //https://www.geeksforgeeks.org/stream-maptoint-java-examples/
         
@@ -31,13 +31,14 @@ public class HardSoftScoreCalculator implements EasyScoreCalculator<Sudoku>{
         // We gebruiken een truuk van: https://www.baeldung.com/java-stream-indices
         for (int j = 0; j<n; j++) {
         final int k = j;
-        System.out.println("k = "+k);
+        //System.out.println("k = "+k);
         int distincts_in_kol = (int) IntStream
         .range(0, n2)
         .filter(i->(i + k) % n == 0) // Hier pakken we één kolom.
         .map(i->solution.vakjesList.get(i).cijfer)
         .distinct()
         .count();
+        /*
         System.out.println("Alleen range");
         System.out.println(IntStream
                 .range(0, n2)
@@ -67,7 +68,7 @@ public class HardSoftScoreCalculator implements EasyScoreCalculator<Sudoku>{
                 .collect(Collectors.toList())
                 );// https://stackoverflow.com/questions/28280721/java-8-streams-intstream-to-string
         // https://www.baeldung.com/java-intstream-convert
-
+		*/
         hardScore += -n + distincts_in_kol;
         }
         
@@ -82,7 +83,7 @@ public class HardSoftScoreCalculator implements EasyScoreCalculator<Sudoku>{
         hardScore += -n + distincts_in_rows;
         }
       
-        
+        System.out.println("Hardscore: "+hardScore+", softscore: "+softScore);
         return HardSoftScore.of(hardScore, softScore);
 	}
 	
