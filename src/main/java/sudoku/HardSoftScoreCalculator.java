@@ -4,6 +4,7 @@ import org.optaplanner.core.api.score.Score;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -16,6 +17,7 @@ public class HardSoftScoreCalculator implements EasyScoreCalculator<Sudoku>{
         
         int n = 9;
         int n2 = (int)Math.pow(n, 2);
+        int ns = (int)Math.sqrt(n);
         
         // Constraint: geen gelijke getallen in een kolom.
         //IntStream stream = IntStream.of(solution.vakjesList.forEach((vakje) -> vakje.cijfer));
@@ -82,9 +84,52 @@ public class HardSoftScoreCalculator implements EasyScoreCalculator<Sudoku>{
                 .count();
         hardScore += -n + distincts_in_rows;
         }
-      
+        
+        
+        //Nu voor blokken.
+        for (int i=0; i<ns; i++) {
+        	for (int j=0; j<ns; j++) {
+        		int[] indexes = new int[9];
+        		for (int k=0; k<ns; k++) {
+        			for (int l=0; l<ns; l++) {
+        				int index = (i*n*ns)+(j*ns)+(k*n)+l;
+        				//System.out.print(", "+index);
+        				indexes[k*ns+l]=index; 
+        			}
+        		} 
+        		// Constraint maken.
+        		int distincts_in_rows = 
+        		(int) Arrays.stream(indexes)
+                .map(m->solution.vakjesList.get(m).cijfer)// Door de plus k gaan we over de rijen.
+                .distinct()
+                .count();        		
+        		hardScore += -n + distincts_in_rows;
+        	}       	
+        }
+        
         System.out.println("Hardscore: "+hardScore+", softscore: "+softScore);
         return HardSoftScore.of(hardScore, softScore);
+	}
+	
+	public static void main(String[] args) {
+        int n = 9;
+        int n2 = (int)Math.pow(n, 2);
+        int ns = (int)Math.sqrt(n);		
+        for (int i=0; i<ns; i++) {
+        	for (int j=0; j<ns; j++) {
+        		System.out.println("i: "+i+",j: "+j);
+        		int[] indexes = new int[9];
+        		for (int k=0; k<ns; k++) {
+        			for (int l=0; l<ns; l++) {
+        				int index = (i*n*ns)+(j*ns)+(k*n)+l;
+        				System.out.print(", "+index);
+        				indexes[k*ns+l]=index;       				
+        			}
+        			System.out.println("");
+        		}        	        		
+        	}       	
+        }
+        System.out.println("end");
 	}
 	
 
