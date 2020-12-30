@@ -48,7 +48,12 @@
     <version>1.2.3</version>
     <scope>runtime</scope> <!--  Eerder stond deze op score test, toen werkte het niet, met scope runtime werkt het wel. -->
 </dependency>
-
+ 
+ <dependency>
+      <groupId>org.optaplanner</groupId>
+      <artifactId>optaplanner-benchmark</artifactId>
+      <version>7.27.0.Final</version>
+    </dependency>
 </dependencies>
 
 <!-- https://mvnrepository.com/artifact/org.optaplanner/optaplanner-core -->

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.optaplanner.benchmark.api.PlannerBenchmark;
+import org.optaplanner.benchmark.api.PlannerBenchmarkFactory;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
 import sudoku.Vakje;
@@ -37,7 +39,7 @@ public class HelloWorld {
                 "sudoku/solver_conf.xml");
         Solver<Sudoku> solver = solverFactory.buildSolver();
 
-        int[][] matrix = ImportCsv.matrixFromCsv("sudoku_2_star.csv");
+        int[][] matrix = ImportCsv.matrixFromCsv("sudoku_4_star.csv");
         Sudoku sudoku = new Sudoku(matrix);
         /*
        Sudoku sudoku = new Sudoku();
@@ -61,8 +63,15 @@ public class HelloWorld {
        
         //sudoku.vakjesList=vakjesList;
        	   
-     
+        
+       // Benchmark 
 
+        PlannerBenchmarkFactory benchmarkFactory = PlannerBenchmarkFactory.createFromSolverFactory(solverFactory);
+
+        PlannerBenchmark benchmark = benchmarkFactory.buildPlannerBenchmark(sudoku); //https://docs.optaplanner.org/7.27.0.Final/optaplanner-docs/html_single/#benchmarker
+        benchmark.benchmarkAndShowReportInBrowser();
+     
+        /*
         // Solve the problem
        Sudoku solvedSudoku = solver.solve(sudoku);
        
@@ -75,12 +84,11 @@ public class HelloWorld {
     	   System.out.println("");
     	   
        }
-       
-       
+              
        // Laat de score van de oplossing zien:
        HardSoftScoreCalculator calculator = new HardSoftScoreCalculator();
        calculator.calculateScore(solvedSudoku);
-       
+       */
        
        /*
        for (int j = 0; j<n; j++) {

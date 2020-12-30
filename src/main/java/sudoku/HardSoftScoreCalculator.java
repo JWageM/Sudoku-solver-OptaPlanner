@@ -107,7 +107,7 @@ public class HardSoftScoreCalculator implements EasyScoreCalculator<Sudoku>{
         	}       	
         }
         
-        System.out.println("Hardscore: "+hardScore+", softscore: "+softScore);
+        //System.out.println("Hardscore: "+hardScore+", softscore: "+softScore);
         return HardSoftScore.of(hardScore, softScore);
 	}
 	
