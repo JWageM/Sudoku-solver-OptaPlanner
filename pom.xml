@@ -46,7 +46,7 @@
     <groupId>ch.qos.logback</groupId>
     <artifactId>logback-classic</artifactId>
     <version>1.2.3</version>
-    <scope>test</scope>
+    <scope>runtime</scope> <!--  Eerder stond deze op score test, toen werkte het niet, met scope runtime werkt het wel. -->
 </dependency>
 
 </dependencies>
