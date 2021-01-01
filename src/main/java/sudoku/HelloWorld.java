@@ -63,16 +63,16 @@ public class HelloWorld {
        
         //sudoku.vakjesList=vakjesList;
        	   
-        
+        /*
        // Benchmark 
 
-        PlannerBenchmarkFactory benchmarkFactory = PlannerBenchmarkFactory.createFromSolverConfigXmlResource( "sudoku/solver_conf.xml");
+        PlannerBenchmarkFactory benchmarkFactory = PlannerBenchmarkFactory.createFromSolverConfigXmlResource( "sudoku/solver_conf_exhaustive.xml");
         PlannerBenchmark benchmark = benchmarkFactory.buildPlannerBenchmark(sudoku); //https://docs.optaplanner.org/7.27.0.Final/optaplanner-docs/html_single/#benchmarker
         benchmark.benchmarkAndShowReportInBrowser();
      	
-     
+     */
         
-        /*
+        
         // Solve the problem
        Sudoku solvedSudoku = solver.solve(sudoku);
        
@@ -89,7 +89,7 @@ public class HelloWorld {
        // Laat de score van de oplossing zien:
        HardSoftScoreCalculator calculator = new HardSoftScoreCalculator();
        calculator.calculateScore(solvedSudoku);
-       */
+       
        
        /*
        for (int j = 0; j<n; j++) {
