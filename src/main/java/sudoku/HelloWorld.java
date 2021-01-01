@@ -39,7 +39,7 @@ public class HelloWorld {
                 "sudoku/solver_conf.xml");
         Solver<Sudoku> solver = solverFactory.buildSolver();
 
-        int[][] matrix = ImportCsv.matrixFromCsv("sudoku_4_star.csv");
+        int[][] matrix = ImportCsv.matrixFromCsv("sudoku_2_star.csv");
         Sudoku sudoku = new Sudoku(matrix);
         /*
        Sudoku sudoku = new Sudoku();
@@ -66,11 +66,12 @@ public class HelloWorld {
         
        // Benchmark 
 
-        PlannerBenchmarkFactory benchmarkFactory = PlannerBenchmarkFactory.createFromSolverFactory(solverFactory);
-
+        PlannerBenchmarkFactory benchmarkFactory = PlannerBenchmarkFactory.createFromSolverConfigXmlResource( "sudoku/solver_conf.xml");
         PlannerBenchmark benchmark = benchmarkFactory.buildPlannerBenchmark(sudoku); //https://docs.optaplanner.org/7.27.0.Final/optaplanner-docs/html_single/#benchmarker
         benchmark.benchmarkAndShowReportInBrowser();
+     	
      
+        
         /*
         // Solve the problem
        Sudoku solvedSudoku = solver.solve(sudoku);

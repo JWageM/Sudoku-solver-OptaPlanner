@@ -1,17 +1,15 @@
 package sudoku;
 
-import org.optaplanner.core.api.score.Score;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
-import org.optaplanner.core.impl.score.director.easy.EasyScoreCalculator;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class HardSoftScoreCalculator implements EasyScoreCalculator<Sudoku>{
+public class HardSoftScoreCalculator implements org.optaplanner.core.api.score.calculator.EasyScoreCalculator<Sudoku, HardSoftScore>{
 
 	@Override
-	public Score calculateScore(Sudoku solution) {
+	public HardSoftScore calculateScore(Sudoku solution) {
         int hardScore = 0;
         int softScore = 0;
         
