@@ -9,7 +9,7 @@ import org.optaplanner.core.api.domain.variable.PlanningVariable;
 @PlanningEntity()
 public class Vakje {
 	
-	@PlanningVariable(valueRangeProviderRefs = {"delayRange"}, nullable = true)
+	@PlanningVariable(valueRangeProviderRefs = {"delayRange"})
 	public Integer cijfer;
 	
 	public boolean fixed = false;

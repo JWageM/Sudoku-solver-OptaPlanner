@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solver xmlns="https://www.optaplanner.org/xsd/solver" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://www.optaplanner.org/xsd/solver https://www.optaplanner.org/xsd/solver/solver.xsd">
- 
+<solver>
+
   <solutionClass>sudoku.Sudoku</solutionClass>
   <entityClass>sudoku.Vakje</entityClass>
-  
 
-  
   <scoreDirectorFactory>
     <easyScoreCalculatorClass>sudoku.HardSoftScoreCalculatorExhaustive</easyScoreCalculatorClass>
     <!--<easyScoreCalculatorClass>org.optaplanner.examples.nqueens.solver.score.NQueensMapBasedEasyScoreCalculator</easyScoreCalculatorClass>-->
@@ -14,28 +11,22 @@
     <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.nqueens.solver.score.NQueensBasicIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
     <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.nqueens.solver.score.NQueensAdvancedIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
     <!--<scoreDrl>org/optaplanner/examples/nqueens/solver/nQueensScoreRules.drl</scoreDrl>-->
-    <initializingScoreTrend>ONLY_UP</initializingScoreTrend>
+    <initializingScoreTrend>ONLY_UP</initializingScoreTrend><!-- The score inintializing score trend is only up, since we look at the number of distinct numbers in [1-9], so if we convert a 0 to something in this range, we can only improve.-->
     <!--<assertionScoreDirectorFactory>-->
       <!--<easyScoreCalculatorClass>org.optaplanner.examples.nqueens.solver.score.NQueensEasyScoreCalculator</easyScoreCalculatorClass>-->
     <!--</assertionScoreDirectorFactory>-->
   </scoreDirectorFactory>
 
-  
   <termination>
    	<!--<bestScoreLimit>0</bestScoreLimit>-->
-   		<millisecondsSpentLimit>600</millisecondsSpentLimit>
-       <!--secondsSpentLimit></secondsSpentLimit-->
+       <secondsSpentLimit>300</secondsSpentLimit>
        <bestScoreLimit>0hard/0soft</bestScoreLimit>
   </termination>
   
-      <exhaustiveSearch>
-    <exhaustiveSearchType>BRUTE_FORCE</exhaustiveSearchType>
-
-  </exhaustiveSearch>
-  
-  <!-- https://docs.optaplanner.org/8.0.0.Final/optaplanner-docs/html_single/index.html#exhaustiveSearch -->
-  
-
+  <localSearch>
+    <localSearchType>TABU_SEARCH</localSearchType>
+    
+  </localSearch>
   
   <!-- Power tweaked optimization algorithms configuration -->
   <!--<constructionHeuristic>-->

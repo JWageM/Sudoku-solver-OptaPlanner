@@ -11,7 +11,7 @@
     <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.nqueens.solver.score.NQueensBasicIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
     <!--<incrementalScoreCalculatorClass>org.optaplanner.examples.nqueens.solver.score.NQueensAdvancedIncrementalScoreCalculator</incrementalScoreCalculatorClass>-->
     <!--<scoreDrl>org/optaplanner/examples/nqueens/solver/nQueensScoreRules.drl</scoreDrl>-->
-    <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
+    <initializingScoreTrend>ONLY_UP</initializingScoreTrend><!-- The score inintializing score trend is only up, since we look at the number of distinct numbers in [1-9], so if we convert a 0 to something in this range, we can only improve.-->
     <!--<assertionScoreDirectorFactory>-->
       <!--<easyScoreCalculatorClass>org.optaplanner.examples.nqueens.solver.score.NQueensEasyScoreCalculator</easyScoreCalculatorClass>-->
     <!--</assertionScoreDirectorFactory>-->

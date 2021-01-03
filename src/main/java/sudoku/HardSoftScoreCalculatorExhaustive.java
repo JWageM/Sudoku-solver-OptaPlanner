@@ -15,6 +15,8 @@ public class HardSoftScoreCalculatorExhaustive implements org.optaplanner.core.a
 
 	@Override
 	public HardSoftScore calculateScore(Sudoku solution) {
+		//System.out.println("calculating score");
+        //solution.print();
         int hardScore = 0;
         int softScore = 0;
         
@@ -40,7 +42,8 @@ public class HardSoftScoreCalculatorExhaustive implements org.optaplanner.core.a
         int distincts_in_kol = (int) IntStream
         .range(0, n2)
         .filter(i->(i + k) % n == 0) // Hier pakken we één kolom.
-        .map(i->Objects.requireNonNullElse(solution.vakjesList.get(i).cijfer, Integer.valueOf(0)))
+        .map(i->Objects.requireNonNullElse(solution.vakjesList.get(i).cijfer, Integer.valueOf(0)).intValue())
+        .filter(i -> i!=0)// We don't want to take 0's into account when calculating the score.
         .distinct()
         .count();
         /*
@@ -82,8 +85,9 @@ public class HardSoftScoreCalculatorExhaustive implements org.optaplanner.core.a
         final int k = j;
         int distincts_in_rows = (int) IntStream
                 .range(0, n)
-                .map(i->Objects.requireNonNullElse(solution.vakjesList.get(i+(k*n)).cijfer, Integer.valueOf(0)))  
+                .map(i->Objects.requireNonNullElse(solution.vakjesList.get(i+(k*n)).cijfer, Integer.valueOf(0)).intValue())  
                 //.map(i->solution.vakjesList.get(i+(k*n)).cijfer)// Door de plus k gaan we over de rijen.
+                .filter(i -> i!=0)// We don't want to take 0's into account when calculating the score.
                 .distinct()
                 .count();
         hardScore += -n + distincts_in_rows;
@@ -104,14 +108,16 @@ public class HardSoftScoreCalculatorExhaustive implements org.optaplanner.core.a
         		// Constraint maken.
         		int distincts_in_rows = 
         		(int) Arrays.stream(indexes)
-                .map(m->Objects.requireNonNullElse(solution.vakjesList.get(m).cijfer, Integer.valueOf(0)))        		
+                .map(m->Objects.requireNonNullElse(solution.vakjesList.get(m).cijfer, Integer.valueOf(0)).intValue())        		
                // .map(m->solution.vakjesList.get(m).cijfer)// Door de plus k gaan we over de rijen.
+                .filter(m -> m!=0)// We don't want to take 0's into account when calculating the score.
                 .distinct()
                 .count();        		
         		hardScore += -n + distincts_in_rows;
         	}       	
         }
         
+
         //System.out.println("Hardscore: "+hardScore+", softscore: "+softScore);
         return HardSoftScore.of(hardScore, softScore);
 	}

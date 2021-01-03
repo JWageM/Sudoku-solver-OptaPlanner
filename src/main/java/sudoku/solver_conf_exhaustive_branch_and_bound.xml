@@ -23,13 +23,12 @@
   
   <termination>
    	<!--<bestScoreLimit>0</bestScoreLimit>-->
-   		<millisecondsSpentLimit>600</millisecondsSpentLimit>
-       <!--secondsSpentLimit></secondsSpentLimit-->
+       <secondsSpentLimit>60</secondsSpentLimit>
        <bestScoreLimit>0hard/0soft</bestScoreLimit>
   </termination>
   
       <exhaustiveSearch>
-    <exhaustiveSearchType>BRUTE_FORCE</exhaustiveSearchType>
+    <exhaustiveSearchType>BRANCH_AND_BOUND</exhaustiveSearchType>
 
   </exhaustiveSearch>
   

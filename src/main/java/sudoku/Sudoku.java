@@ -31,7 +31,7 @@ public class Sudoku {
     			Integer temp = matrix[i][j];
     			boolean fixed = (temp != 0);
     			if (!fixed) {
-    				temp = null; // 0 means uninstantiated.
+    				//temp = null; // 0 means uninstantiated.// Tabu-search needs an initialized solution
     			}
     			vakjesList.add(new Vakje(temp,fixed)); 
 
@@ -40,5 +40,25 @@ public class Sudoku {
     		
     	}
     	
+    }
+    
+    public void print() {
+    	
+        int n=9;
+        for(int i = 0; i < n; i++) {
+     	   for(int j = 0; j < n; j++) {
+     		   Integer temp = this.vakjesList.get(j+n*i).cijfer;
+     		   if (temp == null) {
+     			  System.out.print(0);
+     		   }else {
+      			  System.out.print(temp);
+   			   
+     			   
+     		   }
+     	       System.out.print(",");
+     	   }
+     	   System.out.println("");
+     	   
+        }
     }
 }
