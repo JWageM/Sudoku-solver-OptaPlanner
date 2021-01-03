@@ -28,8 +28,12 @@ public class Sudoku {
     	vakjesList= new ArrayList<>();
     	for (int i = 0; i<n; i++) {
     		for (int j = 0; j<n; j++) {
-    			int temp = matrix[i][j];
-    			vakjesList.add(new Vakje(temp,temp!=0)); // a value of 0 means an open field.
+    			Integer temp = matrix[i][j];
+    			boolean fixed = (temp != 0);
+    			if (!fixed) {
+    				temp = null; // 0 means uninstantiated.
+    			}
+    			vakjesList.add(new Vakje(temp,fixed)); 
 
     			
     		}
