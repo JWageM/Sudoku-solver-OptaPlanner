@@ -110,7 +110,7 @@ public class HardSoftScoreCalculatorEntropy implements org.optaplanner.core.api.
         final int k = j;
         int distincts_in_rows = (int) IntStream
                 .range(0, n)
-                .map(m->Objects.requireNonNullElse(solution.vakjesList.get(m).cijfer, Integer.valueOf(0)).intValue())
+                .map(i->Objects.requireNonNullElse(solution.vakjesList.get(i+(k*n)).cijfer, Integer.valueOf(0)).intValue())
                 .filter(m -> m!=0)// We don't want to take 0's into account when calculating the score.
                 .mapToObj(m->m)
                 .collect(Collectors.groupingByConcurrent(Function.identity(), Collectors.counting()))
