@@ -24,6 +24,7 @@ public class Sudoku {
     
     public Sudoku(int[][] matrix) {
     	int n = matrix.length; // We assume that the matrix is square.
+    	int ns = (int)Math.sqrt(n);
     	
     	vakjesList= new ArrayList<>();
     	for (int i = 0; i<n; i++) {
@@ -31,9 +32,9 @@ public class Sudoku {
     			Integer temp = matrix[i][j];
     			boolean fixed = (temp != 0);
     			if (!fixed) {
-    				//temp = null; // 0 means uninstantiated.// Tabu-search needs an initialized solution
+    				temp = null; // 0 means uninstantiated.// Tabu-search needs an initialized solution
     			}
-    			vakjesList.add(new Vakje(temp,fixed)); 
+    			vakjesList.add(new Vakje(temp,i,j,(((i/ns)-1)*ns) + (j/ns)-1,fixed)); //TODO checken of het blok goed gaat. 
 
     			
     		}

@@ -36,10 +36,10 @@ public class HelloWorld {
     public static void main(String[] args) {
         // Build the Solver
         SolverFactory<Sudoku> solverFactory = SolverFactory.createFromXmlResource(
-                "sudoku/solver_conf_tabu_search.xml");
+                "sudoku/solver_conf_exhaustive_branch_and_bound.xml");
         Solver<Sudoku> solver = solverFactory.buildSolver();
 
-        int[][] matrix = ImportCsv.matrixFromCsv("sudoku_4_star.csv");
+        int[][] matrix = ImportCsv.matrixFromCsv("sudoku_3_star.csv");
         Sudoku sudoku = new Sudoku(matrix);
         /*
        Sudoku sudoku = new Sudoku();
@@ -63,16 +63,16 @@ public class HelloWorld {
        
         //sudoku.vakjesList=vakjesList;
        	   
-        
+        /*
        // Benchmark 
 
         PlannerBenchmarkFactory benchmarkFactory = PlannerBenchmarkFactory.createFromSolverConfigXmlResource( "sudoku/solver_conf_tabu_search.xml");
         PlannerBenchmark benchmark = benchmarkFactory.buildPlannerBenchmark(sudoku); //https://docs.optaplanner.org/7.27.0.Final/optaplanner-docs/html_single/#benchmarker
         benchmark.benchmarkAndShowReportInBrowser();
-     	
+     	*/
      
         
-        /*
+        
         // Solve the problem
        Sudoku solvedSudoku = solver.solve(sudoku);
        
@@ -90,7 +90,7 @@ public class HelloWorld {
        // Laat de score van de oplossing zien:
        HardSoftScoreCalculatorExhaustive calculator = new HardSoftScoreCalculatorExhaustive();
        calculator.calculateScore(solvedSudoku);
-       */
+       
        
        /*
        for (int j = 0; j<n; j++) {

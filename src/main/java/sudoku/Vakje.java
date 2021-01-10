@@ -9,8 +9,12 @@ import org.optaplanner.core.api.domain.variable.PlanningVariable;
 @PlanningEntity()
 public class Vakje {
 	
-	@PlanningVariable(valueRangeProviderRefs = {"delayRange"})
+	@PlanningVariable(valueRangeProviderRefs = {"delayRange"}) //TODO: in NQueens they refer to the difficulty weightsfactory here, do we need that or does that happen in the solver config?
 	public Integer cijfer;
+	
+	public int horizontal; // These are problemfacts. TODO: do we need to annotate them?
+	public int vertical;
+	public int blok;
 	
 	public boolean fixed = false;
 	
@@ -18,16 +22,21 @@ public class Vakje {
 		cijfer = integer;
 	}*/
 
-	public Vakje(){
+	public Vakje(){ // I recall this was needed.
 		
 	}
-	
+	/*
 	public Vakje(Integer inputCijfer){
 		cijfer = inputCijfer;
 	}
-	public Vakje(Integer inputCijfer, boolean inputFixed){
+	*/
+	public Vakje(Integer inputCijfer, int horizontal, int vertical, int blok,  boolean inputFixed){
 		cijfer = inputCijfer;
 		fixed = inputFixed;
+		this.horizontal = horizontal;
+		this.vertical = vertical;
+		this.blok = blok;
+		
 	}
 	public int n = 9;
 	
